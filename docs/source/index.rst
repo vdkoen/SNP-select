@@ -2,7 +2,6 @@ Snp panel selector: A tool for finding a minimal snp panel for the identificatio
 
 :Author: Koen van Diemen
 :Date: |today|
-:Version: |version|
 
 Welcome to Snp selection's documentation!
 =========================================
