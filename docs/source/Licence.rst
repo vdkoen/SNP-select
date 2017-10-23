@@ -3,7 +3,7 @@ License
 
 MIT License
 
-Copyright (c) [year] [fullname]
+Copyright (c) [2017] [Koen van Diemen]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -25,4 +25,4 @@ SOFTWARE.
 
 Contact
 =======
-Questions plz get mad!!
+For questions email: k.v.diemen@naktuinbouw.nl
