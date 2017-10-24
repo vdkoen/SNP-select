@@ -27,7 +27,7 @@ To install::
 
 Samtools and Htslib
 -------------------
-Installation instructions can be found here: http://www.htslib.org/download/
+Installation instructions can be found `here <http://www.htslib.org/download/>`_
 
 Python packages
 ---------------

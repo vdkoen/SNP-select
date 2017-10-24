@@ -4,10 +4,13 @@ Pipeline
 
 Introduction
 ------------
-This pipeline will identify minimal SNP markers for the identification of the cultivar variatie.
+
+commands voor snakemake -n optie en -j standaard 8 cores enz enz
+
+This pipeline will identify minimal SNP markers for the identification of the cultivar variaty.
 
 .. _mylabel:
-.. figure:: test_flowchart.png
+.. figure:: contents/test_flowchart.png
    :scale: 50 %
    :figclass: align-center
 
@@ -17,10 +20,81 @@ This pipeline will identify minimal SNP markers for the identification of the cu
 
 Configuration
 -------------
-.. highlight:: yaml
+
+The configuration file for the pipeline can be in ``YAML`` or ``JSON`` format, recommended format is ``YAML``
+see (:ref:`config_file`) for an example.
+
+Configuration file can contain the following fields:
+
+``reference_genome:*``
+    * Full path to the reference genome, this much be in .gz format!
+``output_dir:*``
+    * Output directory where you want your results.
+``basename:*``
+    * A general name for you analysis, this name will be shown in the names of the generated files, a short name is recommended.
+``input_dir:*``
+    * Input directory containing the input files.
+``pair_file:``
+    * File specifying if you have multiple individuals from the same variety see (:ref:`pair_file`) for an example.
+``variant_caller:*``
+    * (String) Variant caller you would like to use. You have two options: **samtools** or **freebayes**.
+``method:*``
+    * (String) Method you would like to use. You have two options: snps and frequency.
+        #. **snps** will tell the pipeline to use the genotype calls to make a snp panel.
+        #. **frequency** will tell the pipeline to calculate allele frequencies using the reference allele, and make a snp panel.
+``vcf_filter:*``
+    * ``-q:`` (Numeric) Minimal quality a record needs to have to pass the filtering
+    * ``-d:`` (Numeric) Minimal amount of reads that need to be mapped in a record
+    * ``-s:`` (Numeric) Minimal depth per sample.
+    * ``-r:`` (Numeric) The minimal call rate in percentage (between 0 - 1). So the amount of genotypes that need to be present in a record.
+    * ``-f:`` (Numeric) Percentage of heterozygotes in a record (between 0 - 1). it checks if a record is trust worthy based on the heterozygous calls, you can expect those to be around 0.5/0.5 for diploide samples. If this ratio is off for all the calls combined it might indicate a faulty side.
+``configure_snp_set:*``
+    * ``genetic_distance:*``
+        * (Numeric) The minimal genetic distance you want to build the snp panel with.
+``flanking_sequences:*``
+    * (Numeric) Length of the flanking sequences for primer design.
+
+.. note::
+
+   Every field with a * behind it is a compulsory field! This much be specified in the config file.
+
+
+.. _pair_file:                                 
+
+Pair file
+^^^^^^^^^
+The pair file is not compulsory. Specifying a pair file does have a great influence on how the pipeline functions.
+It also depends on what method you are using **snps** or **frequency**
+
+**snps:**
+ So when a pair is specified using the snps method the pipeline will search for variants which are stable within the groups specified in the pair file.
+ Therefore will only select those variants which have the same genotype call within the specified groups. Since all the
+ members of the group now have the same variants they are merged into one sample. If a pair file is simply not specified
+ in the configuration this filtering step is not applied.
+
+**frequency:**
+ For the frequency method the pair file has different function. If a pair file is specified the allele frequency is
+ calculated over all the group members instead if for every group member. This means that all the group members will be merged
+ into one single sample having one allele frequency. If a pair file is not specified allele frequency are calculated over
+ all the samples instead and nothing will be merged.  
+
+
+Here you see an example of how the pair file should look, every line represents a group. The individual members should be comma separated.
+you can specify as many groups as you want. The names in this file represent the RG identifiers / sample names in the VCF file.
+
+
+.. include:: contents/pair_example.txt
+    :literal:
+
+.. _config_file:
+
+Configuration example
+^^^^^^^^^^^^^^^^^^^^^
+
+Example of the configuration file in ``YAML``
+
 .. code-block:: yaml
 
-  # Configuration in YAML
    reference_genome:
      /nfs/BigData01/Big_Data/Genomes/Lolium_perenne/clean_genome_lolium.fna.gz
    output_dir:
@@ -46,3 +120,46 @@ Configuration
      genetic_distance: 5
    flanking_sequences:
      length: 100
+
+
+Tips and tricks
+---------------
+
+recommendations for good results.
+    kruis bestuiving vs inteelt lijnen / hybride lijnen
+    filtering voor kiezen van allel freq hogere correlatie
+
+
+Variant filtering
+-----------------
+
+
+.. literalinclude:: contents/vcf_filter.py
+   :language: python
+   :lines: 19-55
+
+
+
+.. .. automodule:: contents/vcf_filter
+   :members: parse_options
+
+Some tables
+-----------
+
+=====  =====  =======
+A      B      A and B
+=====  =====  =======
+False  False  False
+True   False  False
+False  True   False
+True   True   True
+=====  =====  =======
+
++------------------------+------------+----------+----------+
+| Header row, column 1   | Header 2   | Header 3 | Header 4 |
+| (header rows optional) |            |          |          |
++========================+============+==========+==========+
+| body row 1, column 1   | column 2   | column 3 | column 4 |
++------------------------+------------+----------+----------+
+| body row 2             | ...        | ...      |          |
++------------------------+------------+----------+----------+
