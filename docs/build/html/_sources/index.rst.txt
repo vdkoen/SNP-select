@@ -1,9 +1,9 @@
-Snp panel selector: A tool for finding a minimal snp panel for the identification of variaty
+Snp-select: A tool for finding a minimal snp panel for the identification of variety
 
 :Author: Koen van Diemen
 :Date: |today|
 
-Welcome to Snp selection's documentation!
+Welcome to Snp-select's documentation!
 =========================================
 
 Contents

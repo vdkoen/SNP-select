@@ -5,17 +5,32 @@ Pipeline
 Introduction
 ------------
 
+Snp-select is a pipeline for finding minimal amount of snps for accurate identification of plant variety. Snp select is
+designed with GBS data but also works with WGS data. The end results is a snp panel in vcf format and flanking sequences
+with iupac nucleotides for accurate primer design.
+
+Their are two version of the pipeline available:
+
+    #. A full pipeline including: Alignemt, variantcalling, variant filtering, and snp selection.
+    #. Pipeline from a raw vcf file including: variant filtering and snp selection.
+
+
+methods omschrijving snps and allel frequency
 commands voor snakemake -n optie en -j standaard 8 cores enz enz
 
 This pipeline will identify minimal SNP markers for the identification of the cultivar variaty.
 
+
 .. _mylabel:
-.. figure:: contents/test_flowchart.png
-   :scale: 50 %
+.. figure:: contents/full_workflow_3.png
+   :scale: 80 %
    :figclass: align-center
 
-   This is the caption of the figure (a simple paragraph).
+   Snakemake workflow, two version exist the left side is the full pipeline. On the right side a smaller version which takes a raw vcf file incase you have your own.
 
+
+Usage
+-----
 
 
 Configuration
@@ -35,11 +50,12 @@ Configuration file can contain the following fields:
 ``input_dir:*``
     * Input directory containing the input files.
 ``pair_file:``
-    * File specifying if you have multiple individuals from the same variety see (:ref:`pair_file`) for an example.
+    * File specifying if you have multiple individuals from the same variety see (:ref:`pair_file`) for an example and more information.
 ``variant_caller:*``
     * (String) Variant caller you would like to use. You have two options: **samtools** or **freebayes**.
 ``method:*``
-    * (String) Method you would like to use. You have two options: snps and frequency.
+    * (String) Method you would like to use. You have two options: **snps** and **frequency**.
+
         #. **snps** will tell the pipeline to use the genotype calls to make a snp panel.
         #. **frequency** will tell the pipeline to calculate allele frequencies using the reference allele, and make a snp panel.
 ``vcf_filter:*``

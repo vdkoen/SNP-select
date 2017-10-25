@@ -37,7 +37,7 @@
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Snp selection  documentation" href="index.html"/>
         <link rel="next" title="Requirements" href="Installation.html"/>
-        <link rel="prev" title="Welcome to Snp selection’s documentation!" href="index.html"/> 
+        <link rel="prev" title="Welcome to Snp-select’s documentation!" href="index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -94,6 +94,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#configuration-example">Configuration example</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#tips-and-tricks">Tips and tricks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#variant-filtering">Variant filtering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#some-tables">Some tables</a></li>
 </ul>
@@ -168,10 +169,23 @@
 <h1>Pipeline<a class="headerlink" href="#pipeline" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>This pipeline will identify minimal SNP markers for the identification of the cultivar variatie.</p>
+<p>Snp-select is a pipeline for finding minimal amount of snps for accurate identification of plant variety. Snp select is
+designed with GBS data but also works with WGS data. The end results is a snp panel in vcf format and flanking sequences
+with iupac nucleotides for accurate primer design.</p>
+<dl class="docutils">
+<dt>Their are two version of the pipeline available:</dt>
+<dd><ul class="first last simple">
+<li>A full pipeline including: Alignemt, variantcalling and snp selection</li>
+<li>A pipeline which does</li>
+</ul>
+</dd>
+</dl>
+<p>methods omschrijving snps and allel frequency
+commands voor snakemake -n optie en -j standaard 8 cores enz enz</p>
+<p>This pipeline will identify minimal SNP markers for the identification of the cultivar variaty.</p>
 <div class="align-center figure" id="id2">
-<span id="mylabel"></span><a class="reference internal image-reference" href="_images/test_flowchart.png"><img alt="_images/test_flowchart.png" src="_images/test_flowchart.png" style="width: 397.0px; height: 561.5px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">This is the caption of the figure (a simple paragraph).</span></p>
+<span id="mylabel"></span><a class="reference internal image-reference" href="_images/full_workflow_3.png"><img alt="_images/full_workflow_3.png" src="_images/full_workflow_3.png" style="width: 635.2px; height: 898.4px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Snakemake workflow, two version exist the left side is the full pipeline. On the right side a smaller version which takes a raw vcf file incase you have your own.</span></p>
 </div>
 </div>
 <div class="section" id="configuration">
@@ -202,7 +216,7 @@ see (<a class="reference internal" href="#config-file"><span class="std std-ref"
 </dd>
 <dt><code class="docutils literal"><span class="pre">pair_file:</span></code></dt>
 <dd><ul class="first last simple">
-<li>File specifying if you have multiple individuals from the same variety see (<a class="reference internal" href="#pair-file"><span class="std std-ref">Pair file</span></a>) for an example.</li>
+<li>File specifying if you have multiple individuals from the same variety see (<a class="reference internal" href="#pair-file"><span class="std std-ref">Pair file</span></a>) for an example and more information.</li>
 </ul>
 </dd>
 <dt><code class="docutils literal"><span class="pre">variant_caller:*</span></code></dt>
@@ -211,15 +225,14 @@ see (<a class="reference internal" href="#config-file"><span class="std std-ref"
 </ul>
 </dd>
 <dt><code class="docutils literal"><span class="pre">method:*</span></code></dt>
-<dd><ul class="first last simple">
-<li><dl class="first docutils">
-<dt>(String) Method you would like to use. You have two options: snps and frequency.</dt>
-<dd><ol class="first last arabic">
+<dd><ul class="first last">
+<li><p class="first">(String) Method you would like to use. You have two options: <strong>snps</strong> and <strong>frequency</strong>.</p>
+<blockquote>
+<div><ol class="arabic simple">
 <li><strong>snps</strong> will tell the pipeline to use the genotype calls to make a snp panel.</li>
 <li><strong>frequency</strong> will tell the pipeline to calculate allele frequencies using the reference allele, and make a snp panel.</li>
 </ol>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 </ul>
 </dd>
@@ -320,6 +333,14 @@ you can specify as many groups as you want. The names in this file represent the
 </pre></div>
 </div>
 </div>
+</div>
+<div class="section" id="tips-and-tricks">
+<h2>Tips and tricks<a class="headerlink" href="#tips-and-tricks" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>recommendations for good results.</dt>
+<dd>kruis bestuiving vs inteelt lijnen / hybride lijnen
+filtering voor kiezen van allel freq hogere correlatie</dd>
+</dl>
 </div>
 <div class="section" id="variant-filtering">
 <h2>Variant filtering<a class="headerlink" href="#variant-filtering" title="Permalink to this headline">¶</a></h2>
@@ -440,7 +461,7 @@ you can specify as many groups as you want. The names in this file represent the
         <a href="Installation.html" class="btn btn-neutral float-right" title="Requirements" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Welcome to Snp selection’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="Welcome to Snp-select’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
