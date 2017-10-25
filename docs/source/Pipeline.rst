@@ -6,20 +6,20 @@ Introduction
 ------------
 
 Snp-select is a pipeline for finding minimal amount of snps for accurate identification of plant variety. Snp select is
-designed with GBS data but also works with WGS data. The end results is a snp panel in vcf format and flanking sequences
+designed with GBS data but also works with WGS data. The end results is a snp panel in ``vcf format`` and ``flanking sequences``
 with iupac nucleotides for accurate primer design.
 
 Their are two version of the pipeline available:
 
-    #. A full pipeline including: Alignemt, variantcalling, variant filtering, and snp selection.
-    #. Pipeline from a raw vcf file including: variant filtering and snp selection.
+    #. A full pipeline including: alignment, variant calling, variant filtering, and snp selection.
+    #. A pipeline from a raw vcf file including: variant filtering and snp selection.
 
+The pipeline has two methods: ``snps`` or ``frequency``, which one you choose is depended on how your species of interest reproduces:
 
-methods omschrijving snps and allel frequency
-commands voor snakemake -n optie en -j standaard 8 cores enz enz
+    #. ``frequency``, recommended to be used with cross-pollination species. (Grass, Corn, Spinach, etc.)
+    #. ``snps``, recommended be used with self-pollination/hybrid or cuttings reproduced species. (Rassperry, Tomato, Wheat, Rice, etc.)
 
-This pipeline will identify minimal SNP markers for the identification of the cultivar variaty.
-
+For a overview of the pipeline(s) see :numref:`mylabel`
 
 .. _mylabel:
 .. figure:: contents/full_workflow_3.png
@@ -31,6 +31,35 @@ This pipeline will identify minimal SNP markers for the identification of the cu
 
 Usage
 -----
+
+Pipeline is designed with `snakemake <http://snakemake.readthedocs.io/en/stable/>`_
+
+Some important ``snakemake`` parameters:
+
+    * ``-p`` Printout shell commands
+    * ``-j`` Amount of threats you want to use, default is 8
+    * ``-n`` Do dry run
+
+**Full pipeline:**
+
+To run snakemake on the full pipeline edit the **"snakemake_config.yaml"** config file (:ref:`config_file`) to your liking and run::
+
+   snakemake -s Snakefile -p -n -j 8
+
+This will perform a dry run to see if all the paths are correctly specified. If no errors occur run::
+
+   snakemake -s Snakefile -p -j 8
+
+**VCF pipeline:**
+
+To run snakemake on the vcf pipeline edit the **"snakemake_config_vcf.yaml"** config file (:ref:`config_file_vcf`) to your liking and run::
+
+   snakemake -s Snakefile_vcf -p -n -j 8
+
+This will perform a dry run to see if all the paths are correctly specified. If no errors occur run::
+
+   snakemake -s Snakefile_vcf -p -j 8
+
 
 
 Configuration
@@ -49,6 +78,8 @@ Configuration file can contain the following fields:
     * A general name for you analysis, this name will be shown in the names of the generated files, a short name is recommended.
 ``input_dir:*``
     * Input directory containing the input files.
+``vcf_file``
+    * input raw vcf file (only use this with short pipeline version, from vcf to snp set)
 ``pair_file:``
     * File specifying if you have multiple individuals from the same variety see (:ref:`pair_file`) for an example and more information.
 ``variant_caller:*``
@@ -104,78 +135,71 @@ you can specify as many groups as you want. The names in this file represent the
 
 .. _config_file:
 
-Configuration example
-^^^^^^^^^^^^^^^^^^^^^
+Configuration example full pipeline
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Example of the configuration file in ``YAML``
 
 .. code-block:: yaml
 
+    reference_genome:
+      /nfs/BigData01/Big_Data/Genomes/Lolium_perenne/clean_genome_lolium.fna.gz
+    output_dir:
+      /nfs/BigData01/Big_Data/Lolium/results/grassen_pipeline_2/
+    basename:
+      grassen_name
+    merge_files:
+      input_dir: /nfs/BigData01/Big_Data/Lolium/raw_sequences/
+    pair_file:
+      grassen_pairs.txt
+    variant_caller:
+      samtools
+    #  freebayes
+    method:
+      frequency
+    #  snps
+    vcf_filter:
+      -q: 20
+      -d: 30
+      -s: 4
+      -r: 0.8
+    configure_snp_set:
+      genetic_distance: 1
+    flanking_sequences:
+      length: 100
+
+.. _config_file_vcf:
+
+Configuration example vcf pipeline
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: yaml
+
    reference_genome:
-     /nfs/BigData01/Big_Data/Genomes/Lolium_perenne/clean_genome_lolium.fna.gz
+      /nfs/BigData01/Big_Data/Genomes/Rubus_Occidentalis/BWA_index/Rubus_occidentalis_v1.0.a1.scaffolds.fasta.gz
    output_dir:
-     /nfs/BigData01/Big_Data/Lolium/results/grassen_pipeline_2/
-   basename:
-     grassen_name # how your data is called, plz do not use a extension here.
-   merge_files:
-     input_dir:   /nfs/BigData01/Big_Data/Lolium/raw_sequences/
+      /nfs/BigData01/Big_Data/L15-217_framboos/results/koen/framboos_meh_test_2/
+   vcf_file:
+      /nfs/BigData01/Big_Data/L15-217_framboos/results/koen/framboos_named/framboos_name_samtools.vcf.gz
    pair_file:
-     grassen_pairs.txt
-   variant_caller:
-     samtools
-   #  freebayes
+      /home/koenvd/SNP_selection/framboos_pairs_names.txt
+   basename:
+      framboos_test
    method:
-     frequency
-   #  snps
+      snps
+   #  frequency
    vcf_filter:
-     -q: 20
-     -d: 30
-     -s: 30
-     -r: 0.8
+      -q: 20
+      -d: 30
+      -s: 4
+      -r: 0.8
    configure_snp_set:
-     genetic_distance: 5
+      genetic_distance: 5
    flanking_sequences:
-     length: 100
+      length: 100
 
 
 Tips and tricks
----------------
+===============
+Comming soon
 
-recommendations for good results.
-    kruis bestuiving vs inteelt lijnen / hybride lijnen
-    filtering voor kiezen van allel freq hogere correlatie
-
-
-Variant filtering
------------------
-
-
-.. literalinclude:: contents/vcf_filter.py
-   :language: python
-   :lines: 19-55
-
-
-
-.. .. automodule:: contents/vcf_filter
-   :members: parse_options
-
-Some tables
------------
-
-=====  =====  =======
-A      B      A and B
-=====  =====  =======
-False  False  False
-True   False  False
-False  True   False
-True   True   True
-=====  =====  =======
-
-+------------------------+------------+----------+----------+
-| Header row, column 1   | Header 2   | Header 3 | Header 4 |
-| (header rows optional) |            |          |          |
-+========================+============+==========+==========+
-| body row 1, column 1   | column 2   | column 3 | column 4 |
-+------------------------+------------+----------+----------+
-| body row 2             | ...        | ...      |          |
-+------------------------+------------+----------+----------+

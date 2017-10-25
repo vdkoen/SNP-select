@@ -3,6 +3,11 @@ Requirements
 
 For the software to work some python and R packages are required
 
+Snakemake
+---------
+Installation instructions can be found `here: <http://snakemake.readthedocs.io/en/stable/getting_started/installation.html>`_
+
+
 Burrow-Wheeler Aligner
 ----------------------
 Download here: https://sourceforge.net/projects/bio-bwa/
