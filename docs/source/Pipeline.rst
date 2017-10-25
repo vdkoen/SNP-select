@@ -17,7 +17,7 @@ Their are two version of the pipeline available:
 The pipeline has two methods: ``snps`` or ``frequency``, which one you choose is depended on how your species of interest reproduces:
 
     #. ``frequency``, recommended to be used with cross-pollination species. (Grass, Corn, Spinach, etc.)
-    #. ``snps``, recommended be used with self-pollination/hybrid or cuttings reproduced species. (Rassperry, Tomato, Wheat, Rice, etc.)
+    #. ``snps``, recommended to be used with self-pollination/hybrid or cuttings reproduced species. (Rassperry, Tomato, Wheat, Rice, etc.)
 
 For a overview of the pipeline(s) see :numref:`mylabel`
 

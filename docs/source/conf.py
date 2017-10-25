@@ -46,7 +46,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Snp selection'
+project = u'Snp-select'
 copyright = u'2017, Koen van Diemen'
 author = u'Koen van Diemen'
 
