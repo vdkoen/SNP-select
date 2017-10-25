@@ -1,0 +1,502 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Pipeline &mdash; Snp selection  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Snp selection  documentation" href="index.html"/>
+        <link rel="next" title="Requirements" href="Installation.html"/>
+        <link rel="prev" title="Welcome to Snp selection’s documentation!" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Snp selection
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pipeline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pair-file">Pair file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-example">Configuration example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#variant-filtering">Variant filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#some-tables">Some tables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Licence.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Licence.html#contact">Contact</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Snp selection</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Pipeline</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/Pipeline.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pipeline">
+<h1>Pipeline<a class="headerlink" href="#pipeline" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This pipeline will identify minimal SNP markers for the identification of the cultivar variatie.</p>
+<div class="align-center figure" id="id2">
+<span id="mylabel"></span><a class="reference internal image-reference" href="_images/test_flowchart.png"><img alt="_images/test_flowchart.png" src="_images/test_flowchart.png" style="width: 397.0px; height: 561.5px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">This is the caption of the figure (a simple paragraph).</span></p>
+</div>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>The configuration file for the pipeline can be in <code class="docutils literal"><span class="pre">YAML</span></code> or <code class="docutils literal"><span class="pre">JSON</span></code> format, recommended format is <code class="docutils literal"><span class="pre">YAML</span></code>
+see (<a class="reference internal" href="#config-file"><span class="std std-ref">Configuration example</span></a>) for an example.</p>
+<p>Configuration file can contain the following fields:</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">reference_genome:*</span></code></dt>
+<dd><ul class="first last simple">
+<li>Full path to the reference genome, this much be in .gz format!</li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">output_dir:*</span></code></dt>
+<dd><ul class="first last simple">
+<li>Output directory where you want your results.</li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">basename:*</span></code></dt>
+<dd><ul class="first last simple">
+<li>A general name for you analysis, this name will be shown in the names of the generated files, a short name is recommended.</li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">input_dir:*</span></code></dt>
+<dd><ul class="first last simple">
+<li>Input directory containing the input files.</li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">pair_file:</span></code></dt>
+<dd><ul class="first last simple">
+<li>File specifying if you have multiple individuals from the same variety see (<a class="reference internal" href="#pair-file"><span class="std std-ref">Pair file</span></a>) for an example.</li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">variant_caller:*</span></code></dt>
+<dd><ul class="first last simple">
+<li>(String) Variant caller you would like to use. You have two options: <strong>samtools</strong> or <strong>freebayes</strong>.</li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">method:*</span></code></dt>
+<dd><ul class="first last simple">
+<li><dl class="first docutils">
+<dt>(String) Method you would like to use. You have two options: snps and frequency.</dt>
+<dd><ol class="first last arabic">
+<li><strong>snps</strong> will tell the pipeline to use the genotype calls to make a snp panel.</li>
+<li><strong>frequency</strong> will tell the pipeline to calculate allele frequencies using the reference allele, and make a snp panel.</li>
+</ol>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">vcf_filter:*</span></code></dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">-q:</span></code> (Numeric) Minimal quality a record needs to have to pass the filtering</li>
+<li><code class="docutils literal"><span class="pre">-d:</span></code> (Numeric) Minimal amount of reads that need to be mapped in a record</li>
+<li><code class="docutils literal"><span class="pre">-s:</span></code> (Numeric) Minimal depth per sample.</li>
+<li><code class="docutils literal"><span class="pre">-r:</span></code> (Numeric) The minimal call rate in percentage (between 0 - 1). So the amount of genotypes that need to be present in a record.</li>
+<li><code class="docutils literal"><span class="pre">-f:</span></code> (Numeric) Percentage of heterozygotes in a record (between 0 - 1). it checks if a record is trust worthy based on the heterozygous calls, you can expect those to be around 0.5/0.5 for diploide samples. If this ratio is off for all the calls combined it might indicate a faulty side.</li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">configure_snp_set:*</span></code></dt>
+<dd><ul class="first last simple">
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">genetic_distance:*</span></code></dt>
+<dd><ul class="first last">
+<li>(Numeric) The minimal genetic distance you want to build the snp panel with.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt><code class="docutils literal"><span class="pre">flanking_sequences:*</span></code></dt>
+<dd><ul class="first last simple">
+<li>(Numeric) Length of the flanking sequences for primer design.</li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Every field with a * behind it is a compulsory field! This much be specified in the config file.</p>
+</div>
+<div class="section" id="pair-file">
+<span id="id1"></span><h3>Pair file<a class="headerlink" href="#pair-file" title="Permalink to this headline">¶</a></h3>
+<p>The pair file is not compulsory. Specifying a pair file does have a great influence on how the pipeline functions.
+It also depends on what method you are using <strong>snps</strong> or <strong>frequency</strong></p>
+<dl class="docutils">
+<dt><strong>snps:</strong></dt>
+<dd>So when a pair is specified using the snps method the pipeline will search for variants which are stable within the groups specified in the pair file.
+Therefore will only select those variants which have the same genotype call within the specified groups. Since all the
+members of the group now have the same variants they are merged into one sample. If a pair file is simply not specified
+in the configuration this filtering step is not applied.</dd>
+<dt><strong>frequency:</strong></dt>
+<dd>For the frequency method the pair file has different function. If a pair file is specified the allele frequency is
+calculated over all the group members instead if for every group member. This means that all the group members will be merged
+into one single sample having one allele frequency. If a pair file is not specified allele frequency are calculated over
+all the samples instead and nothing will be merged.</dd>
+</dl>
+<p>Here you see an example of how the pair file should look, every line represents a group. The individual members should be comma separated.
+you can specify as many groups as you want. The names in this file represent the RG identifiers / sample names in the VCF file.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Maravilla1</span><span class="p">,</span><span class="n">Maravilla2</span>
+<span class="n">Brilliance1</span><span class="p">,</span><span class="n">Brilliance2</span>
+<span class="n">Kwanza1</span><span class="p">,</span><span class="n">Kwanza2</span><span class="p">,</span><span class="n">Kwanza3</span>
+<span class="n">Kweli1</span><span class="p">,</span><span class="n">Kweli2</span>
+<span class="n">GlenDee1</span><span class="p">,</span><span class="n">GlenDee2</span><span class="p">,</span><span class="n">GlenDee3</span>
+<span class="n">Marwé1</span><span class="p">,</span><span class="n">Marwé2</span>
+<span class="n">MallingPromise1</span><span class="p">,</span><span class="n">MallingPromise2</span>
+<span class="n">GlenAmple1</span><span class="p">,</span><span class="n">GlenAmple2</span>
+<span class="n">Meeker1</span><span class="p">,</span><span class="n">Meeker2</span><span class="p">,</span><span class="n">Meeker3</span>
+<span class="n">GlenFyne1</span><span class="p">,</span><span class="n">GlenFyne2</span>
+<span class="n">Rafzaqu1</span><span class="p">,</span><span class="n">Rafzaqu2</span>
+<span class="n">Versailles1</span><span class="p">,</span><span class="n">Versailles2</span><span class="p">,</span><span class="n">Versailles3</span>
+<span class="n">Cowichan1</span><span class="p">,</span><span class="n">Cowichan2</span>
+<span class="n">CascadeDelight1</span><span class="p">,</span><span class="n">CascadeDelight2</span><span class="p">,</span><span class="n">CascadeDelight3</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuration-example">
+<span id="config-file"></span><h3>Configuration example<a class="headerlink" href="#configuration-example" title="Permalink to this headline">¶</a></h3>
+<p>Example of the configuration file in <code class="docutils literal"><span class="pre">YAML</span></code></p>
+<div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">reference_genome</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">/nfs/BigData01/Big_Data/Genomes/Lolium_perenne/clean_genome_lolium.fna.gz</span>
+<span class="l l-Scalar l-Scalar-Plain">output_dir</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">/nfs/BigData01/Big_Data/Lolium/results/grassen_pipeline_2/</span>
+<span class="l l-Scalar l-Scalar-Plain">basename</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">grassen_name</span> <span class="c1"># how your data is called, plz do not use a extension here.</span>
+<span class="l l-Scalar l-Scalar-Plain">merge_files</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">input_dir</span><span class="p p-Indicator">:</span>   <span class="l l-Scalar l-Scalar-Plain">/nfs/BigData01/Big_Data/Lolium/raw_sequences/</span>
+<span class="l l-Scalar l-Scalar-Plain">pair_file</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">grassen_pairs.txt</span>
+<span class="l l-Scalar l-Scalar-Plain">variant_caller</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">samtools</span>
+<span class="c1">#  freebayes</span>
+<span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">frequency</span>
+<span class="c1">#  snps</span>
+<span class="l l-Scalar l-Scalar-Plain">vcf_filter</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">-q</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">20</span>
+  <span class="l l-Scalar l-Scalar-Plain">-d</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">30</span>
+  <span class="l l-Scalar l-Scalar-Plain">-s</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">30</span>
+  <span class="l l-Scalar l-Scalar-Plain">-r</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.8</span>
+<span class="l l-Scalar l-Scalar-Plain">configure_snp_set</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">genetic_distance</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="l l-Scalar l-Scalar-Plain">flanking_sequences</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">length</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="variant-filtering">
+<h2>Variant filtering<a class="headerlink" href="#variant-filtering" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">parse_options</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;``Option Parser``&quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">OptionParser</span><span class="p">()</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;-v&quot;</span><span class="p">,</span> <span class="s2">&quot;--vcf&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;vcf_file&quot;</span><span class="p">,</span>
+                      <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Directory containing all GBS data&quot;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;VCF&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;--out&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;output&quot;</span><span class="p">,</span>
+                      <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Output name&quot;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;OUT&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;-q&quot;</span><span class="p">,</span> <span class="s2">&quot;--qual&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;record_qual&quot;</span><span class="p">,</span>
+                      <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Minimal quality a record needs to have to pass the filtering&quot;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;QUAL&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;int&quot;</span><span class="p">,</span>
+                      <span class="n">default</span><span class="o">=</span><span class="s2">&quot;20&quot;</span><span class="p">)</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;-d&quot;</span><span class="p">,</span> <span class="s2">&quot;--depth&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;record_depth&quot;</span><span class="p">,</span>
+                      <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Minimal amount of reads mapped before calling a variant at that location&quot;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;DEPTH&quot;</span><span class="p">,</span>
+                      <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;int&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;30&quot;</span><span class="p">)</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;-s&quot;</span><span class="p">,</span> <span class="s2">&quot;--sample_depth&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;sample_depth&quot;</span><span class="p">,</span>
+                      <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Minimal depth per sample&quot;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;SAMPLE_DEPTH&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;int&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;3&quot;</span><span class="p">)</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;-r&quot;</span><span class="p">,</span> <span class="s2">&quot;--call&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;call_rate&quot;</span><span class="p">,</span>
+                      <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Amount of genotypes which need to be present, before including in downstream analysis&quot;</span><span class="p">,</span>
+                      <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;CALL_RATE&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;float&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;0.8&quot;</span><span class="p">)</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;-p&quot;</span><span class="p">,</span> <span class="s2">&quot;--pairs&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;pair_file&quot;</span><span class="p">,</span>
+                      <span class="n">help</span><span class="o">=</span><span class="s2">&quot;File specifying pairs every line is one pair tab separated&quot;</span><span class="p">,</span>
+                      <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;PAIR_FILe&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;-f&quot;</span><span class="p">,</span> <span class="s2">&quot;--fraction_het&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;fraction_het&quot;</span><span class="p">,</span>
+                      <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Fraction of heterozygous in a record before filtering it, the higher it is the larger the &quot;</span>
+                           <span class="s2">&quot;chance of not removing faulty heterozygous records. But if its to low it could remove &quot;</span>
+                           <span class="s2">&quot;a record only based a single bad heterozygous call.&quot;</span><span class="p">,</span>
+                      <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;HET&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;float&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;0.2&quot;</span><span class="p">)</span>
+
+    <span class="n">opts</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">opts</span><span class="p">,</span> <span class="n">args</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="some-tables">
+<h2>Some tables<a class="headerlink" href="#some-tables" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="29%" />
+<col width="41%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">A</th>
+<th class="head">B</th>
+<th class="head">A and B</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="row-odd"><td>True</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr class="row-even"><td>False</td>
+<td>True</td>
+<td>False</td>
+</tr>
+<tr class="row-odd"><td>True</td>
+<td>True</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="43%" />
+<col width="21%" />
+<col width="18%" />
+<col width="18%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header row, column 1
+(header rows optional)</th>
+<th class="head">Header 2</th>
+<th class="head">Header 3</th>
+<th class="head">Header 4</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>body row 1, column 1</td>
+<td>column 2</td>
+<td>column 3</td>
+<td>column 4</td>
+</tr>
+<tr class="row-odd"><td>body row 2</td>
+<td>…</td>
+<td>…</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Installation.html" class="btn btn-neutral float-right" title="Requirements" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to Snp selection’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Koen van Diemen.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
