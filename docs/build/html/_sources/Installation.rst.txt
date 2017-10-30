@@ -1,12 +1,23 @@
 Requirements
 ============
 
-For the software to work some python and R packages are required
+Clone the pipeline using::
+
+    git clone git@gitlab.naktuinbouw.net:bioinformatics/GBS-SNP-selection.git
+
+Its recommended to use at least the versions on which the pipline is designed::
+
+    Python: 3.4.3
+    R version: 3.4.2
+    Snakemake: 4.0.0
+    Bwa: 0.7.15-r1144-dirty
+    Freebayes: v1.1.0-44-gd784cf8
+    Samtools: 1.5
+    Htslib: 1.5
 
 Snakemake
 ---------
 Installation instructions can be found `here: <http://snakemake.readthedocs.io/en/stable/getting_started/installation.html>`_
-
 
 Burrow-Wheeler Aligner
 ----------------------
@@ -34,8 +45,18 @@ Samtools and Htslib
 -------------------
 Installation instructions can be found `here <http://www.htslib.org/download/>`_
 
-Python packages
----------------
+Python & Python packages
+------------------------
+To install python3::
+
+    sudo apt-get install python3
+
+For the python packages you can use the requirements.txt::
+
+    pip install -r requirements.txt
+
+Or you can install everything manually
+
 numpy::
 
     pip install numpy
@@ -52,8 +73,15 @@ pysam::
 
     pip install pysam
 
-R Libraries
------------
+R & R Libraries
+---------------
+
+Install R::
+
+    sudo apt-get install r-base
+
 Ape and Reshape::
 
-    install.packages("ape", "reshape")
+    R
+    install.packages("ape")
+    install.packages("reshape")

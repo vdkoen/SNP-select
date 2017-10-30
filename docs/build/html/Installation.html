@@ -93,8 +93,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#burrow-wheeler-aligner">Burrow-Wheeler Aligner</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#freebayes">Freebayes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#samtools-and-htslib">Samtools and Htslib</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#python-packages">Python packages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#r-libraries">R Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#python-python-packages">Python &amp; Python packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#r-r-libraries">R &amp; R Libraries</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Licence.html">License</a></li>
@@ -164,7 +164,20 @@
             
   <div class="section" id="requirements">
 <h1>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h1>
-<p>For the software to work some python and R packages are required</p>
+<p>Clone the pipeline using:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@gitlab</span><span class="o">.</span><span class="n">naktuinbouw</span><span class="o">.</span><span class="n">net</span><span class="p">:</span><span class="n">bioinformatics</span><span class="o">/</span><span class="n">GBS</span><span class="o">-</span><span class="n">SNP</span><span class="o">-</span><span class="n">selection</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>Its recommended to use at least the versions on which the pipline is designed:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Python</span><span class="p">:</span> <span class="mf">3.4</span><span class="o">.</span><span class="mi">3</span>
+<span class="n">R</span> <span class="n">version</span><span class="p">:</span> <span class="mf">3.4</span><span class="o">.</span><span class="mi">2</span>
+<span class="n">Snakemake</span><span class="p">:</span> <span class="mf">4.0</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">Bwa</span><span class="p">:</span> <span class="mf">0.7</span><span class="o">.</span><span class="mi">15</span><span class="o">-</span><span class="n">r1144</span><span class="o">-</span><span class="n">dirty</span>
+<span class="n">Freebayes</span><span class="p">:</span> <span class="n">v1</span><span class="o">.</span><span class="mf">1.0</span><span class="o">-</span><span class="mi">44</span><span class="o">-</span><span class="n">gd784cf8</span>
+<span class="n">Samtools</span><span class="p">:</span> <span class="mf">1.5</span>
+<span class="n">Htslib</span><span class="p">:</span> <span class="mf">1.5</span>
+</pre></div>
+</div>
 <div class="section" id="snakemake">
 <h2>Snakemake<a class="headerlink" href="#snakemake" title="Permalink to this headline">¶</a></h2>
 <p>Installation instructions can be found <a class="reference external" href="http://snakemake.readthedocs.io/en/stable/getting_started/installation.html">here:</a></p>
@@ -196,8 +209,17 @@
 <h2>Samtools and Htslib<a class="headerlink" href="#samtools-and-htslib" title="Permalink to this headline">¶</a></h2>
 <p>Installation instructions can be found <a class="reference external" href="http://www.htslib.org/download/">here</a></p>
 </div>
-<div class="section" id="python-packages">
-<h2>Python packages<a class="headerlink" href="#python-packages" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="python-python-packages">
+<h2>Python &amp; Python packages<a class="headerlink" href="#python-python-packages" title="Permalink to this headline">¶</a></h2>
+<p>To install python3:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python3</span>
+</pre></div>
+</div>
+<p>For the python packages you can use the requirements.txt:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Or you can install everything manually</p>
 <p>numpy:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span>
 </pre></div>
@@ -215,10 +237,16 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="r-libraries">
-<h2>R Libraries<a class="headerlink" href="#r-libraries" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="r-r-libraries">
+<h2>R &amp; R Libraries<a class="headerlink" href="#r-r-libraries" title="Permalink to this headline">¶</a></h2>
+<p>Install R:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">r</span><span class="o">-</span><span class="n">base</span>
+</pre></div>
+</div>
 <p>Ape and Reshape:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;ape&quot;</span><span class="p">,</span> <span class="s2">&quot;reshape&quot;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">R</span>
+<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;ape&quot;</span><span class="p">)</span>
+<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;reshape&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

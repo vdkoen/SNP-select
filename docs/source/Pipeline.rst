@@ -201,5 +201,11 @@ Configuration example vcf pipeline
 
 Tips and tricks
 ===============
+
+Reference genome must have a .gz variant and one without. kinda strange but pyfasta cannot work with .gz files
+where other tools need to have a .gz variant
+
+
+
 Comming soon
 

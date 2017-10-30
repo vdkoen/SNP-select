@@ -4,7 +4,7 @@ Snp-select: A tool for finding a minimal snp panel for the identification of var
 :Date: |today|
 
 Welcome to Snp-select's documentation!
-=========================================
+======================================
 
 Contents
 --------
