@@ -53,25 +53,25 @@ To install python3::
 
 For the python packages you can use the requirements.txt::
 
-    pip install -r requirements.txt
+    pip3 install -r requirements.txt
 
 Or you can install everything manually
 
 numpy::
 
-    pip install numpy
+    pip3 install numpy
 
 pyvcf::
 
-    pip install pyvcf
+    pip3 install pyvcf
 
 pyfasta::
 
-    pip install pyfasta
+    pip3 install pyfasta
 
 pysam::
 
-    pip install pysam
+    pip3 install pysam
 
 R & R Libraries
 ---------------
