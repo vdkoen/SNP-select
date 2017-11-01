@@ -100,3 +100,5 @@ To solve this you will need the following packages::
     sudo apt-get install liblapack3
     sudo apt-get install libopenblas-base
     sudo apt-get install libopenblas-dev
+
+
