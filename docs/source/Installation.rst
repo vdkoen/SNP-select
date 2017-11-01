@@ -85,3 +85,18 @@ Ape and Reshape::
     R
     install.packages("ape")
     install.packages("reshape")
+
+
+
+Sometimes installing "ape" will give the following error::
+
+    /usr/bin/ld: cannot find -llapack
+    /usr/bin/ld: cannot find -lblas
+    collect2: error: ld returned 1 exit status
+
+To solve this you will need the following packages::
+
+    sudo apt-get install liblapack-dev
+    sudo apt-get install liblapack3
+    sudo apt-get install libopenblas-base
+    sudo apt-get install libopenblas-dev
