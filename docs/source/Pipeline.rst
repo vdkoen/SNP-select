@@ -42,25 +42,23 @@ Some important ``snakemake`` parameters:
 
 **Full pipeline:**
 
-To run snakemake on the full pipeline edit the **"snakemake_config.yaml"** config file (:ref:`config_file`) to your liking and run::
+To run snakemake on the full pipeline edit the **"snakemake_config.yaml"** config file to your liking, or you can also make one yourself see: (:ref:`config_file`) and run::
 
-   snakemake -s Snakefile -p -n -j 8
+   snakemake -s Snakefile --configfile snakemake_config.yaml -p -n
 
 This will perform a dry run to see if all the paths are correctly specified. If no errors occur run::
 
-   snakemake -s Snakefile -p -j 8
+   snakemake -s Snakefile --configfile snakemake_config.yaml -p
 
 **VCF pipeline:**
 
-To run snakemake on the vcf pipeline edit the **"snakemake_config_vcf.yaml"** config file (:ref:`config_file_vcf`) to your liking and run::
+To run snakemake on the vcf pipeline edit the **"snakemake_config_vcf.yaml"** config file to your liking, or you can also make one yourself see: (:ref:`config_file`) and run::
 
-   snakemake -s Snakefile_vcf -p -n -j 8
+   snakemake -s Snakefile_vcf --configfile snakemake_config_vcf.yaml -p -n
 
 This will perform a dry run to see if all the paths are correctly specified. If no errors occur run::
 
-   snakemake -s Snakefile_vcf -p -j 8
-
-
+   snakemake -s Snakefile_vcf --configfile snakemake_config_vcf.yaml -p
 
 Configuration
 -------------
@@ -99,12 +97,14 @@ Configuration file can contain the following fields:
     * ``genetic_distance:*``
         * (Numeric) The minimal genetic distance you want to build the snp panel with.
 ``flanking_sequences:*``
-    * (Numeric) Length of the flanking sequences for primer design.
+    * ``-l:`` (Numeric) Length of the flanking sequences for primer design.
+    * ``-m:`` (Numeric) Minimal minor allele frequency before reporting this variant with iupac nucleotides.
+    * ``-p:`` (Numeric) Minimal percentage of the genotypes which have to participate in a snp, before reporting the variants.
+
 
 .. note::
 
    Every field with a * behind it is a compulsory field! This much be specified in the config file.
-
 
 .. _pair_file:                                 
 
@@ -146,27 +146,26 @@ Example of the configuration file in ``YAML``
       /nfs/BigData01/Big_Data/Genomes/Lolium_perenne/clean_genome_lolium.fna.gz
     output_dir:
       /nfs/BigData01/Big_Data/Lolium/results/grassen_pipeline_2/
-    basename:
-      grassen_name
-    merge_files:
-      input_dir: /nfs/BigData01/Big_Data/Lolium/raw_sequences/
+    vcf_file:
+      /nfs/BigData01/Big_Data/Lolium/results/grassen_named/grassen_name_samtools.vcf.gz
     pair_file:
-      grassen_pairs.txt
-    variant_caller:
-      samtools
-    #  freebayes
+      /home/koenvd/SNP_selection/grassen_pairs.txt
+    basename:
+      grassen_pair_test
     method:
       frequency
     #  snps
     vcf_filter:
       -q: 20
       -d: 30
-      -s: 4
+      -s: 30
       -r: 0.8
     configure_snp_set:
-      genetic_distance: 1
+      genetic_distance: 5
     flanking_sequences:
-      length: 100
+      -l: 100
+      -m: 0.2
+      -p: 0.5
 
 .. _config_file_vcf:
 
@@ -205,7 +204,19 @@ Tips and tricks
 Reference genome must have a .gz variant and one without. kinda strange but pyfasta cannot work with .gz files
 where other tools need to have a .gz variant
 
+for fetch the reference sequences the header must an exact match with the contig or scaffold name.
+example::
+
+    >MEHO01000001.1
+    CAAGTATCGTTCTGTCATCTAAACTAGATAGTTCTAATATCTCACATGCATAGCAGAAGCATTTTCATTATCTTCGACTT
+    ATCTTATATTTTGCTTCTTCAGGAATTTGTGCAAGATGACAAACGTGGTTCAGAGTTTCCAGGCAAACCATCAGGAGTTT
+
+Something like this will not work for now::
+
+    >MEHO01000001.1 Lolium perenne isolate 4540-9 Ryegrass_Norm_contig_4785, whole genome shotgun sequence
+    CAAGTATCGTTCTGTCATCTAAACTAGATAGTTCTAATATCTCACATGCATAGCAGAAGCATTTTCATTATCTTCGACTT
+    ATCTTATATTTTGCTTCTTCAGGAATTTGTGCAAGATGACAAACGTGGTTCAGAGTTTCCAGGCAAACCATCAGGAGTTT
 
 
-Comming soon
+More comming soon
 
