@@ -31,8 +31,8 @@ the absolute difference in allele frequency.
 **Selected snps**
 
 This is an overview of the selected snps. *Snp_1* will always have the format contig + position of the snp.
-Entropy is the information gain value, the higher this value the better the snp can distinguish between the variaties.
-The rest if the table contains the genotype calls for that position.
+Entropy is the information gain value, the higher this value the better the snp can distinguish between the varieties.
+The rest of the table contains the genotype calls for that position.
 
 +---------+-------+-------+-------+-------+
 |         | Snp.1 | Snp.2 | Snp.3 | Snp.4 |

@@ -143,6 +143,41 @@ Example of the configuration file in ``YAML``
 .. code-block:: yaml
 
     reference_genome:
+      /nfs/BigData01/Big_Data/Genomes/Rubus_Occidentalis/BWA_index/Rubus_occidentalis_v1.0.a1.scaffolds.fasta.gz
+    output_dir:
+      /nfs/BigData01/Big_Data/L15-217_framboos/results/koen/framboos_meh_test_2/
+    basename:
+      framboos_name # how your data is called, plz do not use a extension here.
+    input_dir:
+      /nfs/BigData01/Big_Data/L15-217_framboos/data/raw_sequences_reduced
+    pair_file:
+      /home/koenvd/SNP_selection/framboos_pairs_names.txt
+    variant_caller:
+      samtools
+    #  freebayes
+    method:
+    #  frequency
+      snps
+    vcf_filter:
+      -q: 20
+      -d: 30
+      -s: 4
+      -r: 0.8
+    configure_snp_set:
+      genetic_distance: 1
+    flanking_sequences:
+      -l: 100
+      -m: 0.2
+      -p: 0.5
+
+.. _config_file_vcf:
+
+Configuration example vcf pipeline
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: yaml
+
+    reference_genome:
       /nfs/BigData01/Big_Data/Genomes/Lolium_perenne/clean_genome_lolium.fna.gz
     output_dir:
       /nfs/BigData01/Big_Data/Lolium/results/grassen_pipeline_2/
@@ -166,36 +201,6 @@ Example of the configuration file in ``YAML``
       -l: 100
       -m: 0.2
       -p: 0.5
-
-.. _config_file_vcf:
-
-Configuration example vcf pipeline
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: yaml
-
-   reference_genome:
-      /nfs/BigData01/Big_Data/Genomes/Rubus_Occidentalis/BWA_index/Rubus_occidentalis_v1.0.a1.scaffolds.fasta.gz
-   output_dir:
-      /nfs/BigData01/Big_Data/L15-217_framboos/results/koen/framboos_meh_test_2/
-   vcf_file:
-      /nfs/BigData01/Big_Data/L15-217_framboos/results/koen/framboos_named/framboos_name_samtools.vcf.gz
-   pair_file:
-      /home/koenvd/SNP_selection/framboos_pairs_names.txt
-   basename:
-      framboos_test
-   method:
-      snps
-   #  frequency
-   vcf_filter:
-      -q: 20
-      -d: 30
-      -s: 4
-      -r: 0.8
-   configure_snp_set:
-      genetic_distance: 5
-   flanking_sequences:
-      length: 100
 
 
 Tips and tricks
