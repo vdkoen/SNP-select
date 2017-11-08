@@ -60,6 +60,15 @@ This will perform a dry run to see if all the paths are correctly specified. If 
 
    snakemake -s Snakefile_vcf --configfile snakemake_config_vcf.yaml -p
 
+Snakemake has not a very easy way of logging used commands and settings. Here ``snakemake.log`` is a specified file by the user::
+
+   snakemake -s Snakefile_vcf --configfile snakemake_config_vcf.yaml -p | tee snakemake.log
+
+.. note::
+
+   Using tee will remove the colour output from snakemake, if you want dont want this you can use ``unbuffer`` to install unbuffer: ``sudo apt-get install expect-dev``
+
+
 Configuration
 -------------
 
