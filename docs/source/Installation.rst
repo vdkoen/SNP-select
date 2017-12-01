@@ -1,11 +1,12 @@
 Requirements
 ============
 
-Clone the pipeline using::
+Clone the pipeline from one of the following locations::
 
     git clone git@gitlab.naktuinbouw.net:bioinformatics/GBS-SNP-selection.git
+    git clone https://github.com/vdkoen/SNP-select.git
 
-Its recommended to use at least the versions on which the pipline is designed::
+Its recommended to use at least the versions on which the pipeline is designed::
 
     Python: 3.4.3
     R version: 3.4.2
@@ -14,6 +15,10 @@ Its recommended to use at least the versions on which the pipline is designed::
     Freebayes: v1.1.0-44-gd784cf8
     Samtools: 1.5
     Htslib: 1.5
+
+To check if you have missing dependencies run::
+
+    bash check_dependencies.sh
 
 Snakemake
 ---------
