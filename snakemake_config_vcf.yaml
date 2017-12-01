@@ -1,0 +1,30 @@
+#for outputting all vcf/bam files
+reference_genome:
+#  /nfs/BigData01/Big_Data/Genomes/Lolium_perenne/clean_genome_lolium.fna.gz
+  /nfs/BigData01/Big_Data/Genomes/Rubus_Occidentalis/BWA_index/Rubus_occidentalis_v1.0.a1.scaffolds.fasta.gz
+output_dir:
+#  /nfs/BigData01/Big_Data/Lolium/results/grassen_pipeline_2/
+  /nfs/BigData01/Big_Data/L15-217_framboos/results/koen/framboos_named_96/
+vcf_file:
+#  /nfs/BigData01/Big_Data/Lolium/results/grassen_named/grassen_name_samtools.vcf.gz
+  /nfs/BigData01/Big_Data/L15-217_framboos/results/koen/framboos_named/framboos_name_samtools.vcf.gz
+pair_file:
+#  /home/koenvd/SNP_selection/grassen_pairs.txt
+  /home/koenvd/SNP_selection/framboos_pairs_names.txt
+basename:
+#  grassen_pair_test
+  framboos_name
+method:
+#  frequency
+  snps
+vcf_filter:
+  -q: 20
+  -d: 30
+  -s: 12
+  -r: 0.8
+configure_snp_set:
+  genetic_distance: 96
+flanking_sequences:
+  -l: 100
+  -m: 0.2
+  -p: 0.5

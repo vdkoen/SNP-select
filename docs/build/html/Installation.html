@@ -36,7 +36,7 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Snp-select  documentation" href="index.html"/>
-        <link rel="next" title="License" href="Licence.html"/>
+        <link rel="next" title="Output summary" href="outputs.html"/>
         <link rel="prev" title="Pipeline" href="Pipeline.html"/> 
 
   
@@ -97,6 +97,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#r-r-libraries">R &amp; R Libraries</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="outputs.html">Output summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Licence.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Licence.html#contact">Contact</a></li>
 </ul>
@@ -216,24 +217,24 @@
 </pre></div>
 </div>
 <p>For the python packages you can use the requirements.txt:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 <p>Or you can install everything manually</p>
 <p>numpy:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">numpy</span>
 </pre></div>
 </div>
 <p>pyvcf:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyvcf</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">pyvcf</span>
 </pre></div>
 </div>
 <p>pyfasta:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyfasta</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">pyfasta</span>
 </pre></div>
 </div>
 <p>pysam:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pysam</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">pysam</span>
 </pre></div>
 </div>
 </div>
@@ -249,6 +250,19 @@
 <span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;reshape&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Sometimes installing “ape” will give the following error:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">ld</span><span class="p">:</span> <span class="n">cannot</span> <span class="n">find</span> <span class="o">-</span><span class="n">llapack</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">ld</span><span class="p">:</span> <span class="n">cannot</span> <span class="n">find</span> <span class="o">-</span><span class="n">lblas</span>
+<span class="n">collect2</span><span class="p">:</span> <span class="n">error</span><span class="p">:</span> <span class="n">ld</span> <span class="n">returned</span> <span class="mi">1</span> <span class="n">exit</span> <span class="n">status</span>
+</pre></div>
+</div>
+<p>To solve this you will need the following packages:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">liblapack</span><span class="o">-</span><span class="n">dev</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">liblapack3</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libopenblas</span><span class="o">-</span><span class="n">base</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">libopenblas</span><span class="o">-</span><span class="n">dev</span>
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -262,7 +276,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Licence.html" class="btn btn-neutral float-right" title="License" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="outputs.html" class="btn btn-neutral float-right" title="Output summary" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="Pipeline.html" class="btn btn-neutral" title="Pipeline" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

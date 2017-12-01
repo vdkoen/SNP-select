@@ -1,0 +1,114 @@
+import os
+
+#configfile: "snakemake_config_vcf.yaml"
+
+if not os.path.exists(config["output_dir"]):
+    os.makedirs(config["output_dir"])
+
+result_dir = os.path.join(config["output_dir"], "Results/")
+
+
+if "vcf_filter" in config:
+  vcf_filter_params = ' '.join(['%s %s' % (key, value) for (key, value) in config["vcf_filter"].items()])
+else:
+  vcf_filter_params = ""
+
+if "flanking_sequences" in config:
+  flanking_sequences = ' '.join(['%s %s' % (key, value) for (key, value) in config["flanking_sequences"].items()])
+else:
+  flanking_sequences = ""
+
+if "pair_file" in config:
+  pair_file = "-p " + config["pair_file"]
+else:
+  pair_file = ""
+
+
+if config["method"] == "frequency":
+  filter_script = "allel_frequency/vcf_freq_filter.py"
+  select = "allel_frequency/select_frequency_markers.py"
+  configure = "allel_frequency/configure_dist_set.R"
+
+
+if config["method"] == "snps":
+  filter_script = "method_snps/vcf_filter.py"
+  select = "method_snps/new_select_markers.py"
+  configure = "method_snps/configure_snp_set.R"
+
+#print (os.path.basename(config["vcf_file"]))
+
+rule all:
+  input:
+    result_dir + "snp_set_" + config["basename"] + ".vcf",
+    result_dir + "flanking_sequences_" + config["basename"] + ".tsv"
+
+rule filter_vcf:
+  input:
+    config["vcf_file"],
+  params:
+    filter_script,
+    vcf_filter_params,
+    pair_file
+  output:
+      config["output_dir"] + "filtered_" + config["basename"] + ".vcf"
+  shell:
+    "python3 {params[0]} -v {input[0]} -o {output} {params[1]} {params[2]}"
+
+rule bgzip:
+  input:
+    config["output_dir"] + "filtered_" + config["basename"] + ".vcf"
+  output:
+    config["output_dir"] + "filtered_" + config["basename"] + ".vcf.gz"
+  shell:
+    "bgzip -c {input} > {output}"
+
+#rule tabix:
+#  input:
+#    config["output_dir"] + "filtered_" + config["basename"] + ".vcf.gz"
+#  output:
+#    config["output_dir"] + "filtered_" + config["basename"] + ".vcf.gz" + ".tbi"
+#  shell:
+#    "tabix -p vcf {input}"
+
+#if config["method"] == "snps":
+#  pairs = ""
+#else:
+#  pairs = pair_file
+
+rule get_markers:
+  input:
+    config["output_dir"] + "filtered_" + config["basename"] + ".vcf.gz",
+  params:
+    select,
+    pair_file
+  output:
+    config["output_dir"] + "filtered_" + config["basename"] + ".csv"
+  shell:
+    "python3 {params[0]} -v {input[0]} -o {output} {params[1]}"
+
+rule make_snp_set:
+  input:
+    config["output_dir"] + "filtered_" + config["basename"] + ".csv",
+  params:
+    configure,
+    result_dir,
+    config["configure_snp_set"]["genetic_distance"],
+  output:
+    result_dir + "snps_" + str(config["configure_snp_set"]["genetic_distance"]) + "_filtered_" + config["basename"] + ".csv"
+  shell:
+    "Rscript {params[0]} {input[0]} {params[1]} {params[2]}"
+
+rule get_flanking_sequences:
+  input:
+    config["vcf_file"],
+    config["reference_genome"][:-3],
+    result_dir + "snps_" + str(config["configure_snp_set"]["genetic_distance"]) + "_filtered_" + config["basename"] + ".csv"
+  params:
+    flanking_sequences
+  output:
+    result_dir + "flanking_sequences_" + config["basename"] + ".tsv",
+    result_dir + "snp_set_" + config["basename"] + ".vcf"
+  shell:
+    "python3 flanking_sequences.py -v {input[0]} -r {input[1]} -s {input[2]} -f {output[0]} -c {output[1]} {params}"
+
+

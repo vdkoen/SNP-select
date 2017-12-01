@@ -53,25 +53,25 @@ To install python3::
 
 For the python packages you can use the requirements.txt::
 
-    pip install -r requirements.txt
+    pip3 install -r requirements.txt
 
 Or you can install everything manually
 
 numpy::
 
-    pip install numpy
+    pip3 install numpy
 
 pyvcf::
 
-    pip install pyvcf
+    pip3 install pyvcf
 
 pyfasta::
 
-    pip install pyfasta
+    pip3 install pyfasta
 
 pysam::
 
-    pip install pysam
+    pip3 install pysam
 
 R & R Libraries
 ---------------
@@ -85,3 +85,20 @@ Ape and Reshape::
     R
     install.packages("ape")
     install.packages("reshape")
+
+
+
+Sometimes installing "ape" will give the following error::
+
+    /usr/bin/ld: cannot find -llapack
+    /usr/bin/ld: cannot find -lblas
+    collect2: error: ld returned 1 exit status
+
+To solve this you will need the following packages::
+
+    sudo apt-get install liblapack-dev
+    sudo apt-get install liblapack3
+    sudo apt-get install libopenblas-base
+    sudo apt-get install libopenblas-dev
+
+

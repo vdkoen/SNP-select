@@ -66,7 +66,7 @@ Snakemake has not a very easy way of logging used commands and settings. Here ``
 
 .. note::
 
-   Using ``tee`` will remove the colour output from snakemake, if you want dont want this you can use ``unbuffer`` to install unbuffer: ``sudo apt-get install expect-dev``
+   Using ``tee`` will remove the colour output from Snakemake, if you want don't want this you can use ``unbuffer`` to install unbuffer: ``sudo apt-get install expect-dev``
 
 
 Configuration

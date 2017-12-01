@@ -102,6 +102,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Installation.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="outputs.html">Output summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Licence.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Licence.html#contact">Contact</a></li>
 </ul>
@@ -206,22 +207,30 @@ with iupac nucleotides for accurate primer design.</p>
 </ul>
 </div></blockquote>
 <p><strong>Full pipeline:</strong></p>
-<p>To run snakemake on the full pipeline edit the <strong>“snakemake_config.yaml”</strong> config file (<a class="reference internal" href="#config-file"><span class="std std-ref">Configuration example full pipeline</span></a>) to your liking and run:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">snakemake</span> <span class="o">-</span><span class="n">s</span> <span class="n">Snakefile</span> <span class="o">-</span><span class="n">p</span> <span class="o">-</span><span class="n">n</span> <span class="o">-</span><span class="n">j</span> <span class="mi">8</span>
+<p>To run snakemake on the full pipeline edit the <strong>“snakemake_config.yaml”</strong> config file to your liking, or you can also make one yourself see: (<a class="reference internal" href="#config-file"><span class="std std-ref">Configuration example full pipeline</span></a>) and run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">snakemake</span> <span class="o">-</span><span class="n">s</span> <span class="n">Snakefile</span> <span class="o">--</span><span class="n">configfile</span> <span class="n">snakemake_config</span><span class="o">.</span><span class="n">yaml</span> <span class="o">-</span><span class="n">p</span> <span class="o">-</span><span class="n">n</span>
 </pre></div>
 </div>
 <p>This will perform a dry run to see if all the paths are correctly specified. If no errors occur run:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">snakemake</span> <span class="o">-</span><span class="n">s</span> <span class="n">Snakefile</span> <span class="o">-</span><span class="n">p</span> <span class="o">-</span><span class="n">j</span> <span class="mi">8</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">snakemake</span> <span class="o">-</span><span class="n">s</span> <span class="n">Snakefile</span> <span class="o">--</span><span class="n">configfile</span> <span class="n">snakemake_config</span><span class="o">.</span><span class="n">yaml</span> <span class="o">-</span><span class="n">p</span>
 </pre></div>
 </div>
 <p><strong>VCF pipeline:</strong></p>
-<p>To run snakemake on the vcf pipeline edit the <strong>“snakemake_config_vcf.yaml”</strong> config file (<a class="reference internal" href="#config-file-vcf"><span class="std std-ref">Configuration example vcf pipeline</span></a>) to your liking and run:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">snakemake</span> <span class="o">-</span><span class="n">s</span> <span class="n">Snakefile_vcf</span> <span class="o">-</span><span class="n">p</span> <span class="o">-</span><span class="n">n</span> <span class="o">-</span><span class="n">j</span> <span class="mi">8</span>
+<p>To run snakemake on the vcf pipeline edit the <strong>“snakemake_config_vcf.yaml”</strong> config file to your liking, or you can also make one yourself see: (<a class="reference internal" href="#config-file"><span class="std std-ref">Configuration example full pipeline</span></a>) and run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">snakemake</span> <span class="o">-</span><span class="n">s</span> <span class="n">Snakefile_vcf</span> <span class="o">--</span><span class="n">configfile</span> <span class="n">snakemake_config_vcf</span><span class="o">.</span><span class="n">yaml</span> <span class="o">-</span><span class="n">p</span> <span class="o">-</span><span class="n">n</span>
 </pre></div>
 </div>
 <p>This will perform a dry run to see if all the paths are correctly specified. If no errors occur run:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">snakemake</span> <span class="o">-</span><span class="n">s</span> <span class="n">Snakefile_vcf</span> <span class="o">-</span><span class="n">p</span> <span class="o">-</span><span class="n">j</span> <span class="mi">8</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">snakemake</span> <span class="o">-</span><span class="n">s</span> <span class="n">Snakefile_vcf</span> <span class="o">--</span><span class="n">configfile</span> <span class="n">snakemake_config_vcf</span><span class="o">.</span><span class="n">yaml</span> <span class="o">-</span><span class="n">p</span>
 </pre></div>
+</div>
+<p>Snakemake has not a very easy way of logging used commands and settings. Here <code class="docutils literal"><span class="pre">snakemake.log</span></code> is a specified file by the user:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">snakemake</span> <span class="o">-</span><span class="n">s</span> <span class="n">Snakefile_vcf</span> <span class="o">--</span><span class="n">configfile</span> <span class="n">snakemake_config_vcf</span><span class="o">.</span><span class="n">yaml</span> <span class="o">-</span><span class="n">p</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">snakemake</span><span class="o">.</span><span class="n">log</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Using <code class="docutils literal"><span class="pre">tee</span></code> will remove the colour output from Snakemake, if you want don’t want this you can use <code class="docutils literal"><span class="pre">unbuffer</span></code> to install unbuffer: <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">expect-dev</span></code></p>
 </div>
 </div>
 <div class="section" id="configuration">
@@ -300,7 +309,9 @@ see (<a class="reference internal" href="#config-file"><span class="std std-ref"
 </dd>
 <dt><code class="docutils literal"><span class="pre">flanking_sequences:*</span></code></dt>
 <dd><ul class="first last simple">
-<li>(Numeric) Length of the flanking sequences for primer design.</li>
+<li><code class="docutils literal"><span class="pre">-l:</span></code> (Numeric) Length of the flanking sequences for primer design.</li>
+<li><code class="docutils literal"><span class="pre">-m:</span></code> (Numeric) Minimal minor allele frequency before reporting this variant with iupac nucleotides.</li>
+<li><code class="docutils literal"><span class="pre">-p:</span></code> (Numeric) Minimal percentage of the genotypes which have to participate in a snp, before reporting the variants.</li>
 </ul>
 </dd>
 </dl>
@@ -347,21 +358,21 @@ you can specify as many groups as you want. The names in this file represent the
 <span id="config-file"></span><h3>Configuration example full pipeline<a class="headerlink" href="#configuration-example-full-pipeline" title="Permalink to this headline">¶</a></h3>
 <p>Example of the configuration file in <code class="docutils literal"><span class="pre">YAML</span></code></p>
 <div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">reference_genome</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">/nfs/BigData01/Big_Data/Genomes/Lolium_perenne/clean_genome_lolium.fna.gz</span>
+  <span class="l l-Scalar l-Scalar-Plain">/nfs/BigData01/Big_Data/Genomes/Rubus_Occidentalis/BWA_index/Rubus_occidentalis_v1.0.a1.scaffolds.fasta.gz</span>
 <span class="l l-Scalar l-Scalar-Plain">output_dir</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">/nfs/BigData01/Big_Data/Lolium/results/grassen_pipeline_2/</span>
+  <span class="l l-Scalar l-Scalar-Plain">/nfs/BigData01/Big_Data/L15-217_framboos/results/koen/framboos_meh_test_2/</span>
 <span class="l l-Scalar l-Scalar-Plain">basename</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">grassen_name</span>
-<span class="l l-Scalar l-Scalar-Plain">merge_files</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">input_dir</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/nfs/BigData01/Big_Data/Lolium/raw_sequences/</span>
+  <span class="l l-Scalar l-Scalar-Plain">framboos_name</span> <span class="c1"># how your data is called, plz do not use a extension here.</span>
+<span class="l l-Scalar l-Scalar-Plain">input_dir</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">/nfs/BigData01/Big_Data/L15-217_framboos/data/raw_sequences_reduced</span>
 <span class="l l-Scalar l-Scalar-Plain">pair_file</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">grassen_pairs.txt</span>
+  <span class="l l-Scalar l-Scalar-Plain">/home/koenvd/SNP_selection/framboos_pairs_names.txt</span>
 <span class="l l-Scalar l-Scalar-Plain">variant_caller</span><span class="p p-Indicator">:</span>
   <span class="l l-Scalar l-Scalar-Plain">samtools</span>
 <span class="c1">#  freebayes</span>
 <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">frequency</span>
-<span class="c1">#  snps</span>
+<span class="c1">#  frequency</span>
+  <span class="l l-Scalar l-Scalar-Plain">snps</span>
 <span class="l l-Scalar l-Scalar-Plain">vcf_filter</span><span class="p p-Indicator">:</span>
   <span class="l l-Scalar l-Scalar-Plain">-q</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">20</span>
   <span class="l l-Scalar l-Scalar-Plain">-d</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">30</span>
@@ -370,41 +381,58 @@ you can specify as many groups as you want. The names in this file represent the
 <span class="l l-Scalar l-Scalar-Plain">configure_snp_set</span><span class="p p-Indicator">:</span>
   <span class="l l-Scalar l-Scalar-Plain">genetic_distance</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
 <span class="l l-Scalar l-Scalar-Plain">flanking_sequences</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">length</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>
+  <span class="l l-Scalar l-Scalar-Plain">-l</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>
+  <span class="l l-Scalar l-Scalar-Plain">-m</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.2</span>
+  <span class="l l-Scalar l-Scalar-Plain">-p</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.5</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="configuration-example-vcf-pipeline">
 <span id="config-file-vcf"></span><h3>Configuration example vcf pipeline<a class="headerlink" href="#configuration-example-vcf-pipeline" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-yaml"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">reference_genome</span><span class="p p-Indicator">:</span>
-   <span class="l l-Scalar l-Scalar-Plain">/nfs/BigData01/Big_Data/Genomes/Rubus_Occidentalis/BWA_index/Rubus_occidentalis_v1.0.a1.scaffolds.fasta.gz</span>
+  <span class="l l-Scalar l-Scalar-Plain">/nfs/BigData01/Big_Data/Genomes/Lolium_perenne/clean_genome_lolium.fna.gz</span>
 <span class="l l-Scalar l-Scalar-Plain">output_dir</span><span class="p p-Indicator">:</span>
-   <span class="l l-Scalar l-Scalar-Plain">/nfs/BigData01/Big_Data/L15-217_framboos/results/koen/framboos_meh_test_2/</span>
+  <span class="l l-Scalar l-Scalar-Plain">/nfs/BigData01/Big_Data/Lolium/results/grassen_pipeline_2/</span>
 <span class="l l-Scalar l-Scalar-Plain">vcf_file</span><span class="p p-Indicator">:</span>
-   <span class="l l-Scalar l-Scalar-Plain">/nfs/BigData01/Big_Data/L15-217_framboos/results/koen/framboos_named/framboos_name_samtools.vcf.gz</span>
+  <span class="l l-Scalar l-Scalar-Plain">/nfs/BigData01/Big_Data/Lolium/results/grassen_named/grassen_name_samtools.vcf.gz</span>
 <span class="l l-Scalar l-Scalar-Plain">pair_file</span><span class="p p-Indicator">:</span>
-   <span class="l l-Scalar l-Scalar-Plain">/home/koenvd/SNP_selection/framboos_pairs_names.txt</span>
+  <span class="l l-Scalar l-Scalar-Plain">/home/koenvd/SNP_selection/grassen_pairs.txt</span>
 <span class="l l-Scalar l-Scalar-Plain">basename</span><span class="p p-Indicator">:</span>
-   <span class="l l-Scalar l-Scalar-Plain">framboos_test</span>
+  <span class="l l-Scalar l-Scalar-Plain">grassen_pair_test</span>
 <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span>
-   <span class="l l-Scalar l-Scalar-Plain">snps</span>
-<span class="c1">#  frequency</span>
+  <span class="l l-Scalar l-Scalar-Plain">frequency</span>
+<span class="c1">#  snps</span>
 <span class="l l-Scalar l-Scalar-Plain">vcf_filter</span><span class="p p-Indicator">:</span>
-   <span class="l l-Scalar l-Scalar-Plain">-q</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">20</span>
-   <span class="l l-Scalar l-Scalar-Plain">-d</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">30</span>
-   <span class="l l-Scalar l-Scalar-Plain">-s</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
-   <span class="l l-Scalar l-Scalar-Plain">-r</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.8</span>
+  <span class="l l-Scalar l-Scalar-Plain">-q</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">20</span>
+  <span class="l l-Scalar l-Scalar-Plain">-d</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">30</span>
+  <span class="l l-Scalar l-Scalar-Plain">-s</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">30</span>
+  <span class="l l-Scalar l-Scalar-Plain">-r</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.8</span>
 <span class="l l-Scalar l-Scalar-Plain">configure_snp_set</span><span class="p p-Indicator">:</span>
-   <span class="l l-Scalar l-Scalar-Plain">genetic_distance</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+  <span class="l l-Scalar l-Scalar-Plain">genetic_distance</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
 <span class="l l-Scalar l-Scalar-Plain">flanking_sequences</span><span class="p p-Indicator">:</span>
-   <span class="l l-Scalar l-Scalar-Plain">length</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>
+  <span class="l l-Scalar l-Scalar-Plain">-l</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>
+  <span class="l l-Scalar l-Scalar-Plain">-m</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.2</span>
+  <span class="l l-Scalar l-Scalar-Plain">-p</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.5</span>
 </pre></div>
 </div>
 <div class="section" id="tips-and-tricks">
 <h4>Tips and tricks<a class="headerlink" href="#tips-and-tricks" title="Permalink to this headline">¶</a></h4>
 <p>Reference genome must have a .gz variant and one without. kinda strange but pyfasta cannot work with .gz files
 where other tools need to have a .gz variant</p>
-<p>Comming soon</p>
+<p>for fetch the reference sequences the header must an exact match with the contig or scaffold name.
+example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">MEHO01000001</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">CAAGTATCGTTCTGTCATCTAAACTAGATAGTTCTAATATCTCACATGCATAGCAGAAGCATTTTCATTATCTTCGACTT</span>
+<span class="n">ATCTTATATTTTGCTTCTTCAGGAATTTGTGCAAGATGACAAACGTGGTTCAGAGTTTCCAGGCAAACCATCAGGAGTTT</span>
+</pre></div>
+</div>
+<p>Something like this will not work for now:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">MEHO01000001</span><span class="o">.</span><span class="mi">1</span> <span class="n">Lolium</span> <span class="n">perenne</span> <span class="n">isolate</span> <span class="mi">4540</span><span class="o">-</span><span class="mi">9</span> <span class="n">Ryegrass_Norm_contig_4785</span><span class="p">,</span> <span class="n">whole</span> <span class="n">genome</span> <span class="n">shotgun</span> <span class="n">sequence</span>
+<span class="n">CAAGTATCGTTCTGTCATCTAAACTAGATAGTTCTAATATCTCACATGCATAGCAGAAGCATTTTCATTATCTTCGACTT</span>
+<span class="n">ATCTTATATTTTGCTTCTTCAGGAATTTGTGCAAGATGACAAACGTGGTTCAGAGTTTCCAGGCAAACCATCAGGAGTTT</span>
+</pre></div>
+</div>
+<p>More comming soon</p>
 </div>
 </div>
 </div>
