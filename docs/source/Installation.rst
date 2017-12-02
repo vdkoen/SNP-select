@@ -6,7 +6,7 @@ Clone the pipeline from one of the following locations::
     git clone git@gitlab.naktuinbouw.net:bioinformatics/GBS-SNP-selection.git
     git clone https://github.com/vdkoen/SNP-select.git
 
-Its recommended to use at least the versions on which the pipeline is designed::
+It's recommended to use at least the versions on which the pipeline is designed::
 
     Python: 3.4.3
     R version: 3.4.2
